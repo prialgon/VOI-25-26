@@ -27,7 +27,9 @@ For students outside ICAI or not enrolled in the course, we will provide relevan
 
 ## Resources
 
-An ``enviroment.yaml``file is provide to create a Conda enviroment with all required dependencies.
+An ``enviroment_$OSSystem$.yaml``file is provide to create a Conda environment with all required dependencies.
+
+``$OSSystem$`` - win for windows; unix for Unix and macos for Mac.
 
 💡 Tip: Create the Conda environment from this file:
 ```bash
