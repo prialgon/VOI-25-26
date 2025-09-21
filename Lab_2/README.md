@@ -44,7 +44,7 @@ If you're not enrolled and don't have access to the theory, or just want a refre
 
 - **Chapter 6** in [Concise Computer Vision: An Introduction into Theory and Algorithms](https://doc.lagout.org/science/0_Computer%20Science/2_Algorithms/Concise%20Computer%20Vision_%20An%20Introduction%20into%20Theory%20and%20Algorithms%20%5BKlette%202014-01-20%5D.pdf)
 
-<h2 align="center" style="margin-bottom: 0px"; >Here we go: Lesson 1!</h2>
+<h2 align="center" style="margin-bottom: 0px"; >Here we go: Lesson 2!</h2>
 <p align="center">
   <img src="https://media.giphy.com/media/3orieQSoJPS01oCpig/giphy.gif" width="300" style="margin-bottom: 0px;" />
 </p>
