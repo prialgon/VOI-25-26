@@ -1,5 +1,7 @@
 \documentclass{tudelft-report}
 
+\usepackage{tcolorbox}
+
 %% Set up the bibliography
 \usepackage{biblatex}
 \addbibresource{report.bib}
@@ -8,7 +10,7 @@
 \usepackage{parskip}
 \setlist{itemsep=-2pt} % Reducing white space in lists slightly
 \renewcommand{\deg}{\si{\degree}\xspace} % Use \deg easily, everywhere
-\usepackage{tcolorbox}
+
 
 %% ----------------------------------------------------------------------
 %%    Begin of document + Frontmatter (Roman page numbering)
@@ -19,13 +21,13 @@
 \frontmatter
 
 %% Define the main parameters
-\title{\textbf{Laboratorio} \\ Procesamiento de Imágenes}
+\title{\textbf{Laboratorio} \\ Calibración de Cámara}
 \author{Ingeniería Matemática}
 
 \subject{Visión por Ordenador I} % Cover only
 \affiliation{Universidad Pontificia Comillas, ICAI} % Cover only
 \coverimage{figures/cover.jpg} % Aspect ratio of 2:3 (portrait) recommended
-\definecolor{title}{HTML}{ffffff} % Color for cover title
+\definecolor{title}{HTML}{4884d6} % Color for cover title
 
 \makecover
 
@@ -45,10 +47,10 @@
 
 \mainmatter
 
-\input{mainmatter/introduccion_ses_2}
-\input{Lab_2/template/mainmatter/apartado_a}
-\input{Lab_2/template/mainmatter/apartado_b}
-\input{Lab_2/template/mainmatter/apartado_c}
+\input{mainmatter/introduccion_lab}
+\input{mainmatter/introduccion_ses_1}
+\input{Lab_1/template/mainmatter/apartado_a}
+\input{Lab_1/template/mainmatter/apartado_b}
 
 %% Prevent urls running into margins in bibliography
 \setcounter{biburlnumpenalty}{7000}
