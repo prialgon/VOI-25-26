@@ -3,7 +3,6 @@ import cv2
 from functools import cmp_to_key
 import matplotlib.pyplot as plt
 from typing import List
-from image_classifier import ImageClassifier
 
 def non_max_suppression(img, theta):
 
