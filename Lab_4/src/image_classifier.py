@@ -43,7 +43,8 @@ class ImageClassifier:
 
         # Initialize dictionary from the BoW object
         self._initialize_feature_matcher(matcher_type)
-        self._dictionary = cv2.BOWImgDescriptorExtractor(bow.feature_extractor, self._matcher)
+        self._dictionary = cv2.BOWImgDescriptorExtractor(
+            bow.feature_extractor, self._matcher)
         self._dictionary.setVocabulary(bow.vocabulary)
 
     def train(self, training_set: List[str], iterations: int = 100, epsilon: float = 1e-6):
@@ -63,7 +64,8 @@ class ImageClassifier:
         i = 0
 
         print("\nExtracting features...")
-        time.sleep(0.1)  # Prevents a race condition between tqdm and print statements.
+        # Prevents a race condition between tqdm and print statements.
+        time.sleep(0.1)
 
         for path in tqdm(training_set, unit="image", file=sys.stdout):
             try:
@@ -79,12 +81,15 @@ class ImageClassifier:
             except:
                 print(f"WARN: Issue Loading one label from {path}")
         # Train the classifier
-        time.sleep(0.1)  # Prevents a race condition between tqdm and print statements.
+        # Prevents a race condition between tqdm and print statements.
+        time.sleep(0.1)
         print("\nTraining SVM...")
 
         self._classifier = cv2.ml.SVM_create()
-        self._classifier.setTermCriteria((cv2.TERM_CRITERIA_MAX_ITER | cv2.TERM_CRITERIA_EPS, iterations, epsilon))
-        self._classifier.setType(cv2.ml.SVM_C_SVC)  # C-Support Vector Classification
+        self._classifier.setTermCriteria(
+            (cv2.TERM_CRITERIA_MAX_ITER | cv2.TERM_CRITERIA_EPS, iterations, epsilon))
+        # C-Support Vector Classification
+        self._classifier.setType(cv2.ml.SVM_C_SVC)
 
         # Kernel type
         # - Linear: cv2.ml.SVM_LINEAR
@@ -97,7 +102,8 @@ class ImageClassifier:
 
         # Train an SVM with optimal parameters
         self._classifier.trainAuto(
-            np.array(train_desc, np.float32), cv2.ml.ROW_SAMPLE, np.array(train_labels, np.int32)
+            np.array(train_desc, np.float32), cv2.ml.ROW_SAMPLE, np.array(
+                train_labels, np.int32)
         )
 
     def predict(
@@ -128,12 +134,14 @@ class ImageClassifier:
                 test_labels.append(self._labels.get(Dataset.get_label(path)))
 
         # Predict categories
-        predicted_labels = (self._classifier.predict(np.array(test_desc, np.float32))[1]).ravel().tolist()
+        predicted_labels = (self._classifier.predict(
+            np.array(test_desc, np.float32))[1]).ravel().tolist()
         predicted_labels = [int(label) for label in predicted_labels]
 
         # Format results and compute classification statistics
         results = Results(self._labels, dataset_name=dataset_name)
-        accuracy, confusion_matrix, classification = results.compute(dataset, test_labels, predicted_labels)
+        accuracy, confusion_matrix, classification = results.compute(
+            dataset, test_labels, predicted_labels)
         results.print(accuracy, confusion_matrix)
 
         if save:
@@ -167,7 +175,8 @@ class ImageClassifier:
 
         # Save labels
         with open(filename + "_labels.json", "w", encoding="utf-8") as f:
-            json.dump(self._labels, f, ensure_ascii=False, indent=4, sort_keys=True)
+            json.dump(self._labels, f, ensure_ascii=False,
+                      indent=4, sort_keys=True)
 
     def _initialize_feature_matcher(self, matcher_type: str):
         """Initializes the feature matcher.
@@ -186,7 +195,8 @@ class ImageClassifier:
             search_params = dict(checks=50)
             self._matcher = cv2.FlannBasedMatcher(index_params, search_params)
         else:
-            raise ValueError("Matcher type not supported. Possible values are 'Brute-Force' and 'FLANN'.")
+            raise ValueError(
+                "Matcher type not supported. Possible values are 'Brute-Force' and 'FLANN'.")
 
     def _extract_bow_features(self, image_path: str) -> np.ndarray:
         """Extract features using a BoW dictionary.
